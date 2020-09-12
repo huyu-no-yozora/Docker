@@ -1,0 +1,37 @@
+% MIT License
+% 
+% template.tex
+% 
+% Copyright (c) 2020 冬ノ夜空
+% 
+
+\documentclass[10pt,a4j,openany,dvipdfmx]{jsarticle}
+\usepackage{docmute} %for "input" command
+\input{preamble}
+
+\title{{\it Title}}
+\author{{\it Author }\\著者}
+\date{\todaye}
+
+\begin{document}
+\maketitle
+
+% TOC
+\tableofcontents
+
+\newpage
+
+\input{./intro/Introduction}
+\input{./notation/Notation}
+\newpage
+
+\input{./sec1/section1}
+\input{./sec2/section2}
+\input{./sec3/section3}
+
+% Reference
+\bibliography{./ref/reference}
+
+\end{document}
+
+

@@ -1,0 +1,305 @@
+% MIT License
+% 
+% preamble.tex
+% 
+% Copyright (c) 2020 冬ノ夜空
+% 
+
+  % -- page layput
+  \usepackage[top=3cm, bottom=3cm, left=3.5cm, right=2cm, includefoot]{geometry}
+
+  % -- page configuration
+  \renewcommand{\baselinestretch}{0.95} %行送りの倍率
+  \renewcommand{\figurename}{Fig. }
+  \renewcommand{\tablename}{Table. }
+
+  % -- headline (only jsbook)
+  % \renewcommand{\prepartname}{\Huge{Part\,}}
+  % \renewcommand{\postpartname}{}
+  % \renewcommand{\prechaptername}{Chapter\,}
+  % \renewcommand{\postchaptername}{}
+
+  % -- HyperLink
+  \usepackage{url}
+  \usepackage[dvipdfmx,bookmarks=true,bookmarksnumbered=true,colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+%  \usepackage[dvipdfmx,bookmarks=true,bookmarksnumbered=true,colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue]{hyperref}
+
+  % -- font
+  \usepackage{bm}        %Italicな太字にする
+  \usepackage{ulem}      % underlining for emphasis
+  \usepackage{ascmac}    % "itembox" environment etc.
+
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}   % Latin Modern フォントを使う
+  \usepackage{courier}   % Courier typewriter フォント
+
+  \usepackage{pxjahyper} %しおり・タイトル等の日本語の文字化け防止
+  \usepackage{natbib}    %citeの強化版
+  \bibliographystyle{ametsoc2014}
+
+  % -- graphics / color
+  \usepackage{graphicx}
+  \usepackage{color}
+  \usepackage{multicol}
+  \usepackage[dvipdfmx,svgnames]{xcolor}
+
+  % -- figure
+  \usepackage{here}
+
+  \usepackage{lscape}    % 図や表の回転
+  \usepackage{pdflscape} % 自動的にLandscapeのページのみ回転してくれる
+
+  \usepackage{enumitem}  % item環境のconfig.
+    \setlist[description]{parsep=0mm,topsep=1mm,leftmargin=5mm}
+    \setlist[itemize]{parsep=0mm,topsep=1mm,leftmargin=5mm}
+
+  %background-image(all pages => \***; specific page => \This***)
+  \usepackage{wallpaper}
+
+  % -- symbol
+  \usepackage{textcomp} % 様々なシンボル(特殊文字)を利用
+                        % °は \degree、℃は \celsius を使う
+
+  % 丸数字
+  \newcommand{\maru}[1]{\lower0.5ex\hbox{{\Large \textcircled{\scriptsize{\raise0.5ex\hbox{\normalsize #1}}}}}}
+
+
+%=========================================
+% \usepackage{tocbibind}
+% This option loads package tocbibind if not already done and so list of figures and list of tables are also added in the toc
+% \usepackage{dotocloa} % Add algrism list into toc
+
+\usepackage{tikz}
+\usepackage{pxpgfmark}
+  \usetikzlibrary{fit,calc}
+
+  \usetikzlibrary{shadings} %for shading frame
+
+%define a marking command
+\newcommand*{\tikzmk}[1]{
+\tikz[remember picture,overlay,] \node (#1) {};\ignorespaces
+}
+
+%define a boxing command, argument = colour of box
+\newcommand{\boxit}[1]{
+\tikz[remember picture,overlay]{\node[yshift=3pt,fill=#1,opacity=.25,fit={(A)( $(B)+(.95\linewidth,.8\baselineskip)$ )}] {};}\ignorespaces
+}
+
+%=========================================
+% tcolorbox
+
+\usepackage{tcolorbox}
+  \tcbset{boxrule=0.3mm,left=1mm,right=1mm,top=1mm,bottom=1mm,boxsep=1.5mm}
+  \newcommand{\defaultset}{\tcbset{colframe=Black!70!White,colback=White}}\defaultset
+
+% newcommnd operation for tcolorbox
+\newtcolorbox{forsomeone}[1]{fonttitle=\sffamily,title=#1}
+\newtcbox{term}{colback=Red!10,left=1mm,right=1mm,top=1mm,bottom=1mm,before skip=2mm, after skip=2mm}\newcommand{\terminal}[1]{\texttt{\term{#1}}} %別行のターミナルコマンド
+\newtcbox{inlineterm}{on line, colframe=Red!50!White, colback=Red!10,left=0.5mm,right=0.5mm,top=0.5mm,bottom=0.5mm,left skip=0.5zw, right skip=0.5zw,boxrule=0.2mm}\newcommand{\ilterm}[1]{\texttt{\inlineterm{#1}}} %行内のターミナルコマンド
+
+\tcbuselibrary{listings}
+% \newtcblisting{myverbatim}{listing only,colback=Black!5,before skip=2mm, after skip=2mm}
+% \newtcblisting{multiterm}{listing only,colback=Red!10,before skip=2mm, after skip=2mm}
+
+%\tcbuselibrary{skins}
+\tcbuselibrary{many}
+
+\newenvironment{blueitemize}{\begin{itemize}}{\end{itemize}}
+\tcolorboxenvironment{blueitemize}{blanker,
+left skip=10pt,left=10mm,
+before skip=6pt,after skip=6pt,
+borderline west={3mm}{0pt}{DeepSkyBlue}}
+
+\makeatletter
+  \newtcolorbox{picturebox}[2][]{%
+  skin=enhanced, boxrule=1.0mm, fonttitle=\bfseries, 
+  frame hidden, interior hidden, 
+  overlay={\begin{tcbclipframe}\node at (frame)
+  {\includegraphics[width=\tcb@width,height=\tcb@height]{#2}};\end{tcbclipframe}
+  \begin{tcbclipinterior}\fill[white,opacity=0.75]
+  (frame.south west) rectangle (frame.north east);\end{tcbclipinterior}},#1}
+\makeatother
+
+
+\newenvironment{oceanbox}[1]{\tcolorbox[savedelimiter=oceanbox,
+skin=enhanced,boxrule=1.0mm,fonttitle=\bfseries,
+frame style={upper left=Black,upper right=White,lower left=DeepSkyBlue,lower right=MidnightBlue},
+interior style={white,opacity=0.5},
+segmentation style={black,solid,opacity=0.2,line width=1pt},
+title=#1]
+} {\endtcolorbox}
+
+\newenvironment{skybox}[1]{\tcolorbox[savedelimiter=skybox,
+skin=enhanced,boxrule=1.0mm,fonttitle=\bfseries,
+frame style={upper left=Black,upper right=White,lower left=Cyan,lower right=DodgerBlue},
+interior style={white,opacity=0.5},
+segmentation style={black,solid,opacity=0.2,line width=1pt},
+title=#1]
+} {\endtcolorbox}
+
+\newenvironment{redbox}[1]{\tcolorbox[savedelimiter=redbox,
+skin=enhanced,boxrule=1.0mm,fonttitle=\bfseries,
+frame style={upper left=DarkRed,upper right=White,lower left=Black!50!DarkRed,lower right=Maroon},
+interior style={white,opacity=0.5},
+segmentation style={black,solid,opacity=0.2,line width=1pt},
+title=#1]
+} {\endtcolorbox}
+
+\newtcolorbox{ColorReferenceBox}[1]{textmarker/.style={%
+skin=enhancedmiddle jigsaw,breakable,parbox=false,
+boxrule=0mm,leftrule=3mm,rightrule=3mm,boxsep=0mm,arc=0mm,outer arc=0mm,
+left=3mm,right=3mm,top=1mm,bottom=1mm,toptitle=1mm,bottomtitle=1mm},
+textmarker,colback=#1!5!white,colframe=#1}
+
+% listing with line number
+\newtcblisting{numList}[1]{
+colback=red!5!white,colframe=red!25,
+left=6mm, listing only,
+listing options={style=tcblatex,language=#1,numbers=left,numberstyle=\tiny\color{red!75!black}}}
+
+%=========================================
+% commandshell, commandbox
+
+  % color definition
+  \definecolor{gentooblack}{HTML}{333333}
+  
+  % root user shell
+  % *** Caution: 日本語を扱うのが苦手のよう！！！ ***
+  \newtcblisting{rootshell}{boxrule=0.1mm,
+  colback=gentooblack,colupper=white,colframe=DeepSkyBlue!95!white,
+  listing only,listing options={style=tcblatex,language=sh},
+  every listing line={\textcolor{red}{\small\ttfamily\bfseries [root]\# }}}
+  
+  % normal user shell
+  % *** Caution: 日本語を扱うのが苦手のよう！！！ ***
+  \newtcblisting{commandshell}{boxrule=0.1mm,
+  colback=gentooblack,colupper=white,colframe=DeepSkyBlue!95!white,
+  listing only,listing options={style=tcblatex,language=sh,columns=fullflexible,keywordstyle=\color{cyan}},
+  every listing line={\textcolor{red}{\small\ttfamily\bfseries [user]\$ }}}
+
+  \newtcblisting{onecommandshell}{boxrule=0.1mm,
+  colback=gentooblack,colupper=white,colframe=DeepSkyBlue!95!white,
+  listing only,listing options={style=tcblatex,columns=fullflexible}}
+
+  % \usepackage{listings} or \tcbuselibrary{listings}
+  \DeclareTotalTCBox{\commandbox}{ s v }
+  {verbatim,colupper=white,colback=black!75!white,colframe=black}
+  {\IfBooleanTF{#1}{\textcolor{red}{\ttfamily\bfseries > }}{}%
+  \lstinline[language=command.com,keywordstyle=\color{cyan!35!white}\bfseries]^#2^}
+
+%=========================================
+
+% for drawing the git flow diagram
+\usepackage{filecontents} 
+\newcommand\commit[2]{\node[commit] (#1) {}; \node[clabel] at (#1) {\texttt{#1}: #2};}
+\newcommand\ghost[1]{\coordinate (#1);}
+\newcommand\connect[2]{\path (#1) to[out=90,in=-90] (#2);}
+
+%=========================================
+
+\usepackage{listings}
+\lstset{
+  language = , %プログラム言語(複数の言語に対応，C,C++も可)(plain textの場合は言語設定を空にする!!!)
+  %backgroundcolor={\color{White}},                   %背景色と透過度
+  breaklines = true,                                 %枠外に行った時の自動改行
+  breakindent = 10pt,                                %自動改行後のインデント量(デフォルトでは20[pt])
+  basicstyle = \ttfamily\scriptsize,                 %標準の書体
+  commentstyle = {\itshape \color[cmyk]{1,0.4,1,0}}, %コメントの書体
+  classoffset = 0,                                   %関数名等の色の設定
+  keywordstyle = {\bfseries \color[cmyk]{0,1,0,0}},  %キーワード(int, ifなど)の書体
+  stringstyle = {\ttfamily \color[rgb]{0,0,1}},      %表示する文字の書体
+  %frame = TBrl,       %枠 "t"は上に線を記載, "T"は上に二重線を記載 
+                       %他オプション：leftline，topline，bottomline，lines，single，shadowbox
+  framesep = 5pt,      %frameまでの間隔(行番号とプログラムの間)
+  numbers = none,      %行番号の位置 (行番号無し:none; 左:left; 右:right)
+  stepnumber = 1,      %行番号の間隔
+  numberstyle = \tiny, %行番号の書体
+  tabsize = 4,         %タブの大きさ
+  captionpos = t       %キャプションの場所("tb"ならば上下両方に記載)
+}
+%% Color Numbers
+%\lstset
+%{
+%    literate=%
+%    {0}{{{\color{Orange}0}}}1
+%    {1}{{{\color{Orange}1}}}1
+%    {2}{{{\color{Orange}2}}}1
+%    {3}{{{\color{Orange}3}}}1
+%    {4}{{{\color{Orange}4}}}1
+%    {5}{{{\color{Orange}5}}}1
+%    {6}{{{\color{Orange}6}}}1
+%    {7}{{{\color{Orange}7}}}1
+%    {8}{{{\color{Orange}8}}}1
+%    {9}{{{\color{Orange}9}}}1
+%}
+
+  %\usepackage{layout} % layout図を表示するためのパッケージ
+  %  \setlength{\voffset}{-0.5in} % headerの高さ
+  %  \setlength{\headheight}{1zw} % headerの高さ
+  %  \setlength{\textheight}{42\baselineskip} % textboxの高さ.
+  %  \setlength{\textwidth}{\fullwidth} % textboxの幅.
+  %  \setlength{\evensidemargin}{\oddsidemargin} % 左右の欄外枠の幅をwordっぽくする
+  %  \setlength{\footskip}{4zw}
+  %  \setlength{\parindent}{0pt} %global に\noindent
+  %  \setlength{\parskip}{0.5\baselineskip}
+  %  \setlist[itemize]{leftmargin=12pt}
+
+%=========================================
+
+  \usepackage{mathcomp}
+  \usepackage{amsmath,amssymb}
+% \usepackage{mathptmx} %A,Bのmathcal の別のfontを使う
+
+  \usepackage[ruled]{algorithm2e} % http://www.ctan.org/pkg/algorithm2e
+    \LinesNumbered % Add Line Numbers
+
+  %define some colors according to algorithm parts (or any other method you like)
+  \colorlet{pink}{red!40}
+  \colorlet{blue}{cyan!60}
+  \colorlet{mint}{green!40}
+
+
+  \newtheorem{thm}{定理}[section]%paper_3のために書いている（paper_3を消すときに消せばいい）
+  \newtheorem{lem}[thm]{補題}
+  \newtheorem{axm}[thm]{公理}
+  
+
+  \newcommand{\todaye}{\the\year{\text 年}\the\month{\text 月}}
+  % \newcommand{\terminal}[1]{%
+  % \\\hspace{3zw}\colorbox{Red!20}{\texttt{#1}}\\%
+  % }
+  \newcommand{\whiteterminal}[1]{%
+  \\\hspace{3zw}\texttt{#1}\\%
+  }
+  \newcommand{\textbtt}[1]{\textbf{\texttt{#1}}} %太字のコマンド表示、ここではディレクトリ名に用いる
+  \newcommand{\blueunder}[1]{\textcolor[rgb]{0,0,1}{\underline{#1}}}%下線と青字を施す
+
+%=========================================
+
+\usepackage{varwidth}
+\newtcolorbox{myfilebox}[2][]{enhanced,
+before skip=2mm,after skip=2mm,
+colback=black!5,colframe=black!50,boxrule=0.2mm,
+attach boxed title to top left={xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+varwidth boxed title*=-3cm,
+boxed title style={frame code={
+\path[fill=tcbcolback!30!black]
+([yshift=-1mm,xshift=-1mm]frame.north west)
+arc[start angle=0,end angle=180,radius=1mm]
+([yshift=-1mm,xshift=1mm]frame.north east)
+arc[start angle=180,end angle=0,radius=1mm];
+\path[left color=tcbcolback!60!black,right color=tcbcolback!60!black,
+middle color=tcbcolback!80!black]
+([xshift=-2mm]frame.north west) -- ([xshift=2mm]frame.north east)
+[rounded corners=1mm]-- ([xshift=1mm,yshift=-1mm]frame.north east)
+-- (frame.south east) -- (frame.south west)
+-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+[sharp corners]-- cycle;
+},interior engine=empty,
+},
+fonttitle=\bfseries,
+title={#2},#1}
+
+%=========================================
+
+
