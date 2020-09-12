@@ -5,13 +5,13 @@
 # Copyright (c) 2020 冬ノ夜空
 # 
 
-TARGETS = template.pdf
-SUBDIR = jsarticle
+TARGETS = dockernote.pdf
+SUBDIR = DockerNote
 
 .PHONY: all
 all: $(TARGETS)
 
-template.pdf: 
+dockernote.pdf: 
 	($(MAKE) -C $(SUBDIR))
 
 .PHONY: clean
