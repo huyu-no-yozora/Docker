@@ -11,12 +11,74 @@
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%section%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{section2} % (fold)
-\label{sec:section2}
+\section{Fundamental Knowledge} % (fold)
+\label{sec:fundamental_knowledge}
+
+%@ Image and Container =========================================%
+\subsection{Image and Container} % (fold)
+\label{sub:image_and_container}
+
+\subsubsection{Dokerfile} % (fold)
+\label{ssub:dokerfile}
 
 
+\begin{tcolorbox}[
+title=Dockerfile, fonttitle=\bfseries]
+Dockerfileとは、Docker imageのソースコード(設計図)である。
+\end{tcolorbox}
 
-% section section2 (end)
+
+% subsubsection dokerfile (end)
+\subsubsection{Docker Image} % (fold)
+\label{ssub:docker_image}
+
+
+\begin{tcolorbox}[
+title=Docker Image, fonttitle=\bfseries]
+Docker imageは基本的にread only。Dockerfileから作成され、幾らかのimage layerから成る。
+後述のContainerの核となる部分。
+\end{tcolorbox}
+
+
+% subsubsection docker_image (end)
+\subsubsection{Container} % (fold)
+\label{ssub:container}
+
+
+\begin{tcolorbox}[
+title=Container, fonttitle=\bfseries]
+Containerとは、Docker imageをベースに、(Docker imageの上に) 色々なソフト(database等々)を乗せた、カスタムされた環境のこと。
+Docker Engine($\approx$ docker daemon)上で稼働する、packagingされた環境。
+\end{tcolorbox}
+
+\begin{skybox}{Docker imageとContainer}
+Docker imageは、immutableなContainerのベースイメージ。
+Containerは、Docker imageの上に色々なソフト(database等々)を乗せた、カスタムされた環境。
+\end{skybox}
+
+\begin{tcolorbox}[
+title=docker daemon(dockerd), fonttitle=\bfseries]
+dockerd is the persistent process that manages containers. 
+\tcblower
+dockerd: \url{https://docs.docker.com/engine/reference/commandline/dockerd/}
+\end{tcolorbox}
+
+{\Large $\dagger$ Daemon socket}\\
+The Docker daemon can listen for Docker Engine API requests via three different types of Socket: unix, tcp, and fd.\\
+
+By default, a unix domain socket (or IPC socket) is created at /var/run/docker.sock,
+ requiring either root permission, or docker group membership.\\
+
+If you need to access the Docker daemon remotely, you need to enable the tcp Socket.\\
+
+% subsubsection container (end)
+
+
+% subsection image_and_container (end)
+%@ Image and Container =========================================%
+
+
+% section fundamental_knowledge (end)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%section%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 
