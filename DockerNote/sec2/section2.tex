@@ -18,29 +18,42 @@
 \subsection{Image and Container} % (fold)
 \label{sub:image_and_container}
 
+\subsubsection{Dokerfile} % (fold)
+\label{ssub:dokerfile}
+
+
+\begin{tcolorbox}[
+title=Dockerfile, fonttitle=\bfseries]
+Dockerfileとは、Docker imageのソースコード(設計図)である。
+\end{tcolorbox}
+
+
+% subsubsection dokerfile (end)
 \subsubsection{Docker Image} % (fold)
 \label{ssub:docker_image}
 
 
-
-
-\begin{skybox}{Docker imageとContainer imageの違い}
-Docker imageは基本的にread only。色々なソリューションに関する公式から提供されているイメージ。
-Container imageは、Docker imageをベースに、色々なソフト(database等々)を乗せて一つにまとめた、カスタムされたMyImageのこと。
-\end{skybox}
-
-% subsubsection docker_image (end)
-\subsubsection{Dokerfile} % (fold)
-\label{ssub:dokerfile}
-
 \begin{tcolorbox}[
-title=Dockerfileについて, fonttitle=\bfseries]
-Dockerfileとは、Docker imageのソースコードである。
+title=Docker Image, fonttitle=\bfseries]
+Docker imageは基本的にread only。幾らかのimage layerから成る。
 \end{tcolorbox}
 
-% subsubsection dokerfile (end)
+
+% subsubsection docker_image (end)
 \subsubsection{Container} % (fold)
 \label{ssub:container}
+
+
+\begin{tcolorbox}[
+title=Container, fonttitle=\bfseries]
+Containerとは、Dockerfileである。
+\end{tcolorbox}
+
+\begin{skybox}{Docker imageとContainer}
+Docker imageは基本的にread only。
+Containerは、Docker imageをベースに、(Docker imageの上に) 色々なソフト(database等々)を乗せた、カスタムされた環境。
+\end{skybox}
+
 
 % subsubsection container (end)
 
