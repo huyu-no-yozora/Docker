@@ -11,12 +11,45 @@
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%section%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{section2} % (fold)
-\label{sec:section2}
+\section{Fundamental Knowledge} % (fold)
+\label{sec:fundamental_knowledge}
+
+%@ Image and Container =========================================%
+\subsection{Image and Container} % (fold)
+\label{sub:image_and_container}
+
+\subsubsection{Docker Image} % (fold)
+\label{ssub:docker_image}
 
 
 
-% section section2 (end)
+
+\begin{skybox}{Docker imageとContainer imageの違い}
+Docker imageは基本的にread only。色々なソリューションに関する公式から提供されているイメージ。
+Container imageは、Docker imageをベースに、色々なソフト(database等々)を乗せて一つにまとめた、カスタムされたMyImageのこと。
+\end{skybox}
+
+% subsubsection docker_image (end)
+\subsubsection{Dokerfile} % (fold)
+\label{ssub:dokerfile}
+
+\begin{tcolorbox}[
+title=Dockerfileについて, fonttitle=\bfseries]
+Dockerfileとは、Docker imageのソースコードである。
+\end{tcolorbox}
+
+% subsubsection dokerfile (end)
+\subsubsection{Container} % (fold)
+\label{ssub:container}
+
+% subsubsection container (end)
+
+
+% subsection image_and_container (end)
+%@ Image and Container =========================================%
+
+
+% section fundamental_knowledge (end)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%section%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 
