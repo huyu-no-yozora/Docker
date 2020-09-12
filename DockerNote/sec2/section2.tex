@@ -46,14 +46,29 @@ Docker imageは基本的にread only。幾らかのimage layerから成る。
 
 \begin{tcolorbox}[
 title=Container, fonttitle=\bfseries]
-Containerとは、Dockerfileである。
+Containerとは、Docker imageをベースに、(Docker imageの上に) 色々なソフト(database等々)を乗せた、カスタムされた環境のこと。
+Docker Engine($\approx$ docker daemon)上で稼働する、packagingされた環境。
 \end{tcolorbox}
 
 \begin{skybox}{Docker imageとContainer}
-Docker imageは基本的にread only。
-Containerは、Docker imageをベースに、(Docker imageの上に) 色々なソフト(database等々)を乗せた、カスタムされた環境。
+Docker imageは、immutableなContainerのベースイメージ。
+Containerは、Docker imageの上に色々なソフト(database等々)を乗せた、カスタムされた環境。
 \end{skybox}
 
+\begin{tcolorbox}[
+title=docker daemon(dockerd), fonttitle=\bfseries]
+dockerd is the persistent process that manages containers. 
+\tcblower
+dockerd: \url{https://docs.docker.com/engine/reference/commandline/dockerd/}
+\end{tcolorbox}
+
+{\Large $\dagger$ Daemon socket}\\
+The Docker daemon can listen for Docker Engine API requests via three different types of Socket: unix, tcp, and fd.\\
+
+By default, a unix domain socket (or IPC socket) is created at /var/run/docker.sock,
+ requiring either root permission, or docker group membership.\\
+
+If you need to access the Docker daemon remotely, you need to enable the tcp Socket.\\
 
 % subsubsection container (end)
 
